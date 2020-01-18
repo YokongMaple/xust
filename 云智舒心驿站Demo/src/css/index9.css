@@ -1,0 +1,33 @@
+.body_main {
+    height: 700px;
+    background-color: #cccccc;
+}
+.index9_text {
+    width: 700px;
+    height: 300px;
+    margin: 20px  0 0 50%;
+    transform: translateX(-50%);
+    text-align: left;
+    word-break: break-word;
+    font-size: 20px;
+    font-family: SimSun, Arial, Helvetica, sans-serif;
+    line-height: 40px;
+    resize:none;
+    color: black;
+
+}
+.submit {
+    width: 70px;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    cursor:pointer;
+}
+.index9_p {
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing:20px;
+    color: white;
+}

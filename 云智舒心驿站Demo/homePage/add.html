@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>发表问题</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../src/res/layui/css/layui.css">
+  <link rel="stylesheet" href="../src/res/css/global.css">	<link rel="stylesheet" href="../src/css/index7.css">
+  <link rel="stylesheet" href="../src/css/interface.css">
+
+<script src="../src/res/layui/layui.js"></script>
+
+</head>
+<body>
+
+<div class="body1" >
+  <div class="top">
+    <div class="top_inner">
+      <a href="http://www.xust.edu.cn/" class="top_a1" target="_blank">学校首页</a>
+      <a href="https://jsjxy.xust.edu.cn/index.htm" class="top_a1" target="_blank">计算机科学与技术学院首页</a>
+      <a href="" class="top_a2">设为首页</a>
+      |
+      <a href="" class="top_a2">加入收藏</a>
+    </div>
+  </div>
+  <div class="logo">
+    <div class="logo_inner">
+
+      <img src="../src/img/badge.png" width="100px"  class="img_logo_xust">
+      <img src="../src/img/xt.jpg"  id="img_logo_xt">
+      <img src="../src/img/logo.png" width="100px"  class="img_logo_xust2">
+      <a  href=""  class="logo_inner_a">
+        &nbsp;云&nbsp;智&nbsp;舒&nbsp;心&nbsp;驿&nbsp;站
+      </a>
+
+    </div>
+    <div class="logo_login">
+      <a href="#"> 登陆 </a>|
+      <a href="#"> 注册 </a>
+    </div>
+    <div class="logo_r">
+      <!--        <img src="../src/img/tx.jpeg">-->
+      欢迎您，&nbsp;<a href="index6.html">某某某</a>&nbsp;同学！
+    </div>
+  </div>
+
+
+  <!--导航-->
+  <div class="nav_box">
+    <div class="nav_inner">
+      <a href="index.html" class="nav_bs">网站首页</a>
+      <a href="index2.html">驿站简介</a>
+      <a href="index3.html">专家智库</a>
+      <a href="index4.html">政策流程</a>
+      <a href="index5.html">学生案例</a>
+      <a href="index6.html">个人中心</a>
+      <a href="index7.html">专题讨论</a>
+      <a href="index8.html">线下活动</a>
+      <a href="index9.html">意见反馈</a>
+    </div>
+  </div>
+  <div class="main">
+  </div>
+</div>
+<hr>
+
+<div class="main layui-clear">
+  <div class="fly-panel" pad20>
+    <h2 class="page-title">发表问题</h2>
+
+    <!-- <div class="fly-none">并无权限</div> -->
+
+    <div class="layui-form layui-form-pane">
+      <form action=" ">
+        <div class="layui-form-item">
+          <label for="L_title" class="layui-form-label">标题</label>
+
+          <div class="layui-input-block">
+            <input type="text" id="L_title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+          </div>
+          <label for="L_title" class="layui-form-label">类别</label>
+          <select  class="select_" style="padding-left:10px;width: 200px ;height:38px;display:inline-block;position: absolute">
+            <option value ="volvo">默认</option>
+            <option value ="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+          <div class="layui-input-block">
+             <div class="editor">
+    			<textarea id="content" name="content" style="width:1040px;height:450px;visibility:hidden;"></textarea>
+  			 </div>
+          </div>
+          <label for="L_content" class="layui-form-label" style="top: -2px;">描述</label>
+        </div>
+
+        <div class="layui-form-item">
+          <button class="layui-btn" lay-filter="*" lay-submit>立即发布</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+ <script type="text/javascript" charset="utf-8" src="../src/res/js/kindeditor.js"></script>
+  <script type="text/javascript">
+    KE.show({
+        id : 'content',
+		resizeMode : 1,
+        cssPath : './index.css',
+        items : [
+        'fontname', 'fontsize', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
+        'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+        'insertunorderedlist', 'emoticons', 'image', 'link']
+    });
+  </script>
+<script>
+
+layui.cache.page = '';
+layui.cache.user = {
+  username: '游客'
+  ,uid: -1
+  ,avatar: '../src/res/images/avatar/00.jpg'
+  ,experience: 83
+  ,sex: '男'
+};
+layui.config({
+  version: "2.0.0"
+  ,base: '../src/res/mods/'
+}).extend({
+  fly: 'index'
+}).use('fly');
+</script>
+</body>
+</html>

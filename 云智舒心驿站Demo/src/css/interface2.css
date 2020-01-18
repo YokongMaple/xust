@@ -1,0 +1,17 @@
+#index3_nav {
+    background-color: darkorange;
+}
+#hr {
+    color: #cccccc;
+}
+.left_body {
+    width: 300px;
+    border-right: 5px #cccccc solid;
+    position: absolute;
+    height: 700px;
+}
+.right_body {
+    width: 900px;
+    position: absolute;
+    height: 700px;
+}

@@ -1,0 +1,29 @@
+#ul_index4 {
+    margin-top: 50px;
+    border-top: 3px #cccccc solid;
+}
+
+.p_index4 {
+    padding-left: 30px;
+    position: absolute;
+    width:600px;
+    display: inline;
+    font-family: SimSun, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+
+}
+.li_index4 {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+    border-bottom: 3px #cccccc solid;
+
+    list-style: none;
+}
+.li_index4 a:hover {
+    background-color: #cccccc;
+}
+.img_index4 {
+    width: 150px;
+    margin-left: 30px;
+}

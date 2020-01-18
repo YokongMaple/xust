@@ -1,0 +1,49 @@
+.right_body {
+margin-top: 50px;
+    border-top: #cccccc 3px solid;
+}
+.right_body {
+    padding-top: 30px;
+}
+.right_body li {
+    font-family: SimSun, Arial, Helvetica, sans-serif;
+
+    margin-left: 50px;
+    list-style-type: none;
+    display: block;
+
+}
+.right_body li p {
+    float: right;
+    margin-right: 50px;
+    display: inline;
+}
+.right_body li:hover {
+    background-color: #cccccc;
+    cursor: pointer;
+}
+.right_body a {
+    text-decoration: none;
+    display: inline-block;
+    color: #333;
+    width: 800px;
+    line-height: 50px;
+
+}
+.r_a {
+    float: right;
+    margin-right: 50px;
+
+}
+.tot_button {
+    text-align: center;
+    margin-top: 230px;
+    transform: translateX(-25px);
+    font-size: 25px;
+
+}
+.button_teac {
+
+    width: 50px;
+    height: 40px;
+}

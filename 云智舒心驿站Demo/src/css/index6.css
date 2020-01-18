@@ -1,0 +1,75 @@
+.left_body img {
+    width: 100px;
+}
+.left_body {
+    float: left;
+}
+.me_img {
+    margin-top: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.submit_a:hover{
+    background-color: orange;
+}
+.information {
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.information p {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.information a {
+    background-color: #cccccc;
+    width: 200px;
+    display: inline-block;
+    padding: 5px 0px 5px 30px;
+
+    letter-spacing:30px;/*字间距*/
+}
+.textarea,.textarea_2 {
+    resize:none;
+    width: 600px;
+    height: 90px;
+    line-height: 30px;
+    font-size: 15px;
+    font-family: SimSun, Arial, Helvetica, sans-serif;
+    margin-left: 50px;
+}
+.right_body  {
+    padding-top: 50px;
+}
+.right_body ul {
+    padding-top: 30px;
+}
+.right_body li {
+    list-style: none;
+    border-bottom: 2px #cccccc solid;
+    padding-bottom: 50px;
+}
+.right_body p {
+    display: inline-block;
+}
+.button_index6 {
+    width: 70px;
+    margin-top: 20px;
+
+    /*float: right;*/
+    /*margin-right: 30px;*/
+}
+.button_total {
+    margin-left: 500px;
+}
+.button_total_2 {
+    margin-left: 100px;
+}
+.textarea_2 {
+    margin-right: 80px !important;
+}
+.hr_2 {
+    border: #cccccc 1px dashed;
+    width: 400px;
+
+}

@@ -1,0 +1,213 @@
+/*背景图片*/
+body {
+    background: url('../img/bg_login.jpg' ) no-repeat;
+    /*width: 1600px;*/
+    background-size:100%;
+    animation-name: myfirst;
+}
+/*登录框*/
+.form {
+    background: rgba(255, 255, 255, 0.2);
+    width: 356px;
+    height: 380px;
+    margin: 100px auto;
+}
+/*阴影*/
+.fa {
+    display: inline-block;
+    top: 27px;
+    left: 6px;
+    position: relative;
+    color: #ccc;
+}
+/*input框*/
+input[type="text"], input[type="password"] {
+    display: block;
+    position: relative;
+    padding: 10px 8px;
+    border: 1px solid #ddd;
+    transition: .3s;
+    font-size: 14px;
+    color: #666;
+    height: 42px;
+}
+/*记住账号*/
+.checkbox {
+    padding-left: 21px;
+}
+/*登录按钮*/
+.pass-button {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    width: 300px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #fff;
+    background: #3f89ec;
+    border: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+/*提交按钮*/
+.pass-button-submit {
+    background-image: none;
+}
+.pass-button:hover {
+    background: #4490f7
+}
+.pass-button:focus {
+    background: #3a84e8
+}
+/*忘记密码和短信快捷登录css样式*/
+a.pass-fgtpwd {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+}
+a.pass-sms-btn {
+    cursor: pointer;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    margin-top: 12px;
+}
+/*a标签悬浮*/
+.pass-link:hover {
+    text-decoration: none;
+    filter: Alpha(opacity=60);
+    opacity: .6
+}
+/*底部蓝色背景及样式*/
+.tang-pass-footerBar {
+    color: #2e82ff;
+    margin-top: 10px;
+    height: 60px;
+    line-height: 60px;
+    background: #f0f6ff;
+    padding: 0 0px;
+    position: relative
+}
+/*手机/邮箱/用户名输入框*/
+.margin {
+    margin-bottom: 0px;
+}
+/*扫码登录字体颜色*/
+.color-blue {
+    color: #2e82ff;
+}
+.color-blue-right {
+    color: #2e82ff;
+    right: 0;
+}
+/*qq图标和新浪微博图标*/
+.bd-acc-list li {
+    float: left;
+    list-style: none;
+}
+ul {
+    padding-left: 30px;
+}
+.bd-acc-qzone .phoenix-btn-item {
+    background-position: -6px -55px;
+}
+.tang-pass-pop-login .tang-pass-login-phoenix .phoenix-btn-item {
+    display: block;
+    margin-right: 15px;
+    color: #00C;
+    text-decoration: underline;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    list-style: none;
+    background: url('../img/loginv4.png');
+    width: 0;
+    height: 18px;
+    overflow: hidden;
+}
+.bd-acc-tsina .phoenix-btn-item {
+    background-position: -55px -33px
+}
+.phoenix-btn-item {
+    display: block;
+    color: #00C;
+    text-decoration: underline;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    list-style: none;
+    background: url('../img/loginv4.png');
+    width: 0;
+    height: 18px;
+    overflow: hidden;
+    margin-top: 23px;
+    margin-left: 6px;
+    margin-right: 0px;
+}
+.phoenix-btn-item {
+    background-position: -55px -33px
+}
+.phoenix-btn-item {
+    background-position: -6px -55px
+}
+.phoenix-btn-item {
+    background-position: -55px -55px
+}
+.phoenix-btn-item {
+    background-position: -30px -30px
+}
+.phoenix-btn-item {
+    background-position: -30px -55px
+}
+.tang-pass-footerBarPhoenixSplit {
+    width: 1px;
+    background: #3582f8;
+    height: 8px;
+    display: inline-block;
+    position: relative;
+}
+.margin-left {
+    margin-left: 83px;
+}
+/*微信*/
+.phoenix-btn-item {
+    background-position: -29px 49px;
+}
+.tang-pass-login-phoenix .pass-phoenix-list .phoenix-btn-item {
+    display: block;
+    margin-right: 15px;
+    color: #00C;
+    text-decoration: underline;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    list-style: none;
+    background: url('../img/loginv4.png') no-repeat;
+    width: 0;
+    height: 18px;
+    overflow: hidden;
+}
+
+/*禁止选择文字*/
+.unselectable {
+    user-select: none;
+}
+
+/**百度图标*/
+p.pass-form-logo {
+    background: url("../img/loginlogo.png") no-repeat left;
+    _background: url("../img/loginlogo_2.png") no-repeat left;
+    font-size: 16px;
+    height: 32px;
+    line-height: 46px;
+    padding-left: 118px;
+    color: #000;
+    margin-top: 1px;
+    margin-bottom: 15px;
+}

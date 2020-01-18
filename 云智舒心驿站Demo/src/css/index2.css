@@ -1,0 +1,29 @@
+#index2_nav {
+    background-color: darkorange  !important;
+}
+
+.tit {
+    line-height: 50px;
+    background-color: lavender;
+    border-bottom: black solid 1px;
+}
+#tit {
+    font-size: 20px;
+    text-align: center;
+
+}
+#word1_ {
+    margin: 100px 200px 0px;
+    background-color: white;
+    height:500px;
+    border-left:1px  black solid;
+    border-right:1px  black solid;
+    padding: 0px 50px 0;
+}
+#word1 {
+    word-wrap:break-word;
+    font-size: 18px;
+    line-height: 50px;
+    text-indent:2em;
+
+}
