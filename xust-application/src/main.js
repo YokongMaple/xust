@@ -11,6 +11,10 @@ import VueAwesomeSwiper from "vue-awesome-swiper";
 // require styles
 import "swiper/dist/css/swiper.css";
 
+// 导入axios配置文件
+import http from "./http";
+Vue.prototype.$http = http;
+
 Vue.use(VueAwesomeSwiper /* { default global options } */);
 
 new Vue({
