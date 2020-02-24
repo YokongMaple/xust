@@ -13,7 +13,7 @@
           </el-form-item>
 
           <el-form-item label="问题描述">
-            <el-input type="textarea" v-model="form.desc"></el-input>
+            <el-input type="textarea" v-model="form.content"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -45,8 +45,21 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       // console.log("submit!");
+      if (this.form.name === undefined || this.form.content === undefined) {
+        return alert("问题名称和问题描述不能为空！");
+      } else {
+        const res = await this.$http.post(`/user/feedBack`, this.form);
+        this.$message({
+          type: "success",
+          message: "反馈成功"
+        });
+      }
+      this.$message({
+        type: "success",
+        message: "反馈成功"
+      });
     }
   }
 };

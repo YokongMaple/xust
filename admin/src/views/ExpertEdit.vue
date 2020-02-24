@@ -8,21 +8,21 @@
       <el-form-item label="头像">
         <el-upload
           class="avatar-uploader"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          :action="$http.defaults.baseURL + 'image'"
           :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
+          :on-success="afterUpload"
         >
-          <img v-if="model.icon" :src="model.icon" class="avatar" />
+          <img v-if="model.image" :src="model.image" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
+
       <el-form-item label="描述">
-        <vue-editor v-model="model.body"></vue-editor>
+        <vue-editor v-model="model.content"></vue-editor>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" native-type="submit">保存</el-button>
+        <el-button type="primary" @click="save">保存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -40,12 +40,30 @@ export default {
   },
   data() {
     return {
-      model: {},
-      parents: [] //父级状态
+      model: {}
     };
   },
   methods: {
-    async save() {}
+    async save() {
+      let res;
+      if (this.id) {
+        res = await this.$http.put(`/teacher/${this.id}`, this.model);
+        //  await this.$http.put(`rest/items/${this.id}`, this.model);
+      } else {
+        res = await this.$http.post(`/teacher`, this.model);
+        console.log(res);
+      }
+      // const res = await this.$http.post(`/teacher`, this.model);
+      this.$message({
+        type: "success",
+        message: "注册成功"
+      });
+    },
+    afterUpload(res) {
+      console.log(res);
+      this.$set(this.model, "image", res.data);
+      console.log(this.model.image);
+    }
   },
   created() {}
 };
