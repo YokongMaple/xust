@@ -6,11 +6,19 @@
 
       <!-- form->提交的对象 -->
       <el-form ref="form" class="content" :model="form" label-width="80px">
+        <el-form-item label="身份">
+          <el-select v-model="form.status" placeholder="请选择">
+            <el-option
+              v-for="item in identity"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="账户">
-          <el-input
-            placeholder="请输入学号或工号"
-            v-model="form.account"
-          ></el-input>
+          <el-input placeholder="请输入学号或工号" v-model="form.account"></el-input>
         </el-form-item>
 
         <el-form-item label="姓名">
@@ -31,24 +39,11 @@
 
         <el-form-item label="邮箱">
           <el-input placeholder="请输入邮箱" v-model="form.email"></el-input>
-          <el-button @click="sendEmail" style="margin-top:10px"
-            >发送验证码</el-button
-          >
+          <el-button @click="sendEmail" style="margin-top:10px">发送验证码</el-button>
         </el-form-item>
 
         <el-form-item label="验证码">
           <el-input placeholder="请输入验证码" v-model="reemail"></el-input>
-        </el-form-item>
-
-        <el-form-item label="身份">
-          <el-select v-model="form.status" placeholder="请选择">
-            <el-option
-              v-for="item in identity"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
         </el-form-item>
 
         <el-form-item label="学院">
@@ -74,16 +69,12 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="warning" size="medium" @click="onSubmit"
-            >注册</el-button
-          >
+          <el-button type="warning" size="medium" @click="onSubmit">注册</el-button>
         </el-form-item>
       </el-form>
 
       <router-link to="/login">
-        <el-link type="primary" style="margin-left: 80px;"
-          >点击此处登录</el-link
-        >
+        <el-link type="primary" style="margin-left: 80px;">点击此处登录</el-link>
       </router-link>
     </div>
   </div>
@@ -147,11 +138,17 @@ export default {
       ) {
         console.log(12312312);
         const res = await this.$http.post(`/user/register`, this.form);
+        console.log(res.data.status);
+        if (res.data.status == 0) {
+          this.$message.error("注册失败-账户或邮箱已被注册请重新输入");
+        } else {
+          this.$message({
+            type: "success",
+            message: "注册成功"
+          });
+          this.$router.push("/login");
+        }
       }
-      this.$message({
-        type: "success",
-        message: "注册成功"
-      });
     },
 
     // 发送验证码按钮方法
@@ -163,9 +160,12 @@ export default {
       const res = await this.$http.get(`/user/email?email=${email}`);
       this.email = res.data;
       if (this.email.status === 1) {
-        alert("发送成功请查看邮箱");
+        this.$message({
+          type: "success",
+          message: "邮件发送成功，请查收"
+        });
       }
-      console.log(this.email);
+      // console.log(this.email);
     },
     // 获取学院列表
     async fetchCollage() {

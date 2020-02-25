@@ -5,7 +5,7 @@
       <el-divider></el-divider>
       <el-form ref="form" class="content" :model="form" label-width="80px">
         <el-form-item label="账户">
-          <el-input placeholder="请输入学号或工号" v-model="form.username"></el-input>
+          <el-input placeholder="请输入学号或工号" v-model="form.account"></el-input>
         </el-form-item>
         <el-form-item label="密码">
           <el-input placeholder="请输入密码" v-model="form.password"></el-input>
@@ -26,15 +26,24 @@
 export default {
   data() {
     return {
-      form: {
-        type: [],
-        desc: ""
-      }
+      form: {}
     };
   },
   methods: {
-    onSubmit() {
-      // console.log("submit!");
+    async onSubmit() {
+      // console.log(this.form);
+      const res = await this.$http.post(`/user/login`, this.form);
+      // console.log(res.status);
+      console.log(res);
+      if (res.data.status == 1) {
+        this.$message({
+          type: "success",
+          message: "登陆成功"
+        });
+        this.$router.push("/home");
+      } else {
+        this.$message.error("登录失败，请检查账户或密码是否输入正确");
+      }
     }
   }
 };

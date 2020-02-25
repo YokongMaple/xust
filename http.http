@@ -1,0 +1,7 @@
+POST http://49.232.138.118:8080/yunzhi/user/login
+Content-Type: application/json;
+
+{
+  "account":"16408070222",
+  "password":"abc123"
+}
