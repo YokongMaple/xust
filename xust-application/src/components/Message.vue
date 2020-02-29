@@ -5,7 +5,7 @@
         <img src="../assets/images/path.png" alt />
         <span class="title">{{title}}</span>
       </div>
-      <div class="body">{{content}}</div>
+      <div class="body" v-html="content"></div>
     </div>
   </div>
 </template>

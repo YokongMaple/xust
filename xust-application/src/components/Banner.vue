@@ -16,19 +16,40 @@
         >&nbsp;云&nbsp;智&nbsp;舒&nbsp;心&nbsp;驿&nbsp;站</a
       >
     </div>
-    <div class="logo-login">
-      <router-link to="/login">登录</router-link>
-      <router-link to="/register">注册</router-link>
-    </div>
     <div class="logo-r">
-      欢迎您，&nbsp;
-      <!-- <a href="index6.html">某某某</a>&nbsp;同学！ -->
+      <span>{{ status != "" ? `欢迎${status}` : "请登录" }}</span>
+    </div>
+    <div class="logo-login">
+      <div v-if="status == ''">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/register">注册</router-link>
+      </div>
+      <div v-else>
+        <el-link @click="signOUt">注销</el-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      status: this.$store.state.isLogin
+    };
+  },
+  methods: {
+    signOUt() {
+      localStorage.removeItem("isLogin");
+      // this.$store.state.loginStatus = {};
+      this.$router.go(0);
+    }
+  },
+  mounted() {
+    // this.$router.go(0);
+    console.log(this.status.data);
+  }
+};
 </script>
 
 <style>
@@ -76,7 +97,7 @@ export default {};
   width: 200px;
   font-size: 15px;
   position: absolute;
-  margin-left: 75%;
+  margin-left: 80%;
   margin-top: -100px;
   line-height: 30px;
   /*background-color: #2268b3;*/

@@ -3,10 +3,10 @@
     <h2>{{ id ? "编辑" : "新建" }}政策 {{ id }}</h2>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
+        <el-input v-model="model.introduction"></el-input>
       </el-form-item>
       <el-form-item label="内容">
-        <vue-editor v-model="model.body"></vue-editor>
+        <vue-editor v-model="model.content"></vue-editor>
       </el-form-item>
 
       <el-form-item>
@@ -28,14 +28,41 @@ export default {
   },
   data() {
     return {
-      model: {},
-      parents: [] //父级状态
+      model: {}
     };
   },
   methods: {
-    async save() {}
+    async save() {
+      let res;
+      if (this.id) {
+        res = await this.$http.post(`/edit_policy?id=${this.id}`, this.model);
+
+        this.$message({
+          type: "success",
+          message: "编辑成功"
+        });
+      } else {
+        // 注册
+        res = await this.$http.post(`/policy`, this.model);
+        // console.log("注册", res);
+        this.$message({
+          type: "success",
+          message: "保存成功"
+        });
+      }
+    },
+    // 获取所编辑分类信息的方法
+    async fetch() {
+      const res = await this.$http.get(`/query_policy?policyId=${this.id}`);
+      // console.log(res);
+      this.model = res.data.data;
+
+      // console.log(res.data.data);
+    }
   },
-  created() {}
+  created() {
+    this.id && this.fetch();
+  }
 };
 </script>
 <style scoped></style>

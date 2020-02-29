@@ -22,7 +22,6 @@ import ExpertEdit from "../views/ExpertEdit.vue";
 import ExpertList from "../views/ExpertList.vue";
 
 import IntroductionEdit from "../views/IntroductionEdit.vue";
-import IntroductionList from "../views/IntroductionList.vue";
 
 import AdminList from "../views/AdminList.vue";
 
@@ -55,20 +54,14 @@ const routes = [
       { path: "/policy/edit/:id", component: PolicyEdit, props: true },
 
       { path: "/Introduction/create", component: IntroductionEdit },
-      { path: "/Introduction/list", component: IntroductionList },
-      {
-        path: "/Introduction/edit/:id",
-        component: IntroductionEdit,
-        props: true
-      },
 
-      { path: "/introduction/create", component: IntroductionEdit },
-      { path: "/introduction/list", component: IntroductionList },
-      {
-        path: "/introduction/edit/:id",
-        component: IntroductionEdit,
-        props: true
-      },
+      // { path: "/introduction/create", component: IntroductionEdit },
+      // { path: "/introduction/list", component: IntroductionList },
+      // {
+      //   path: "/introduction/edit/:id",
+      //   component: IntroductionEdit,
+      //   props: true
+      // },
 
       { path: "/admin/list", component: AdminList }
     ]

@@ -32,9 +32,17 @@ const routes = [
   { path: "/expert", name: "expert", component: Expert },
   { path: "/login", name: "login", component: Login },
   { path: "/register", name: "register", component: Register },
-  { path: "/expert/detail", name: "expert-detail", component: ExpertDetail },
-  { path: "/case/detail", name: "expert-detail", component: CaseDetail },
-  { path: "/policy/detail", name: "policy-detail", component: PolicyDetail },
+  {
+    path: "/expert/detail/:id",
+    name: "expert-detail",
+    component: ExpertDetail
+  },
+  { path: "/case/detail", name: "case-detail", component: CaseDetail },
+  {
+    path: "/policy/detail/:id",
+    name: "policy-detail",
+    component: PolicyDetail
+  },
 
   { path: "/subject/detail", name: "subject-detail", component: SubjectDetail },
   { path: "/question", name: "question", component: Question }
@@ -43,5 +51,13 @@ const routes = [
 const router = new VueRouter({
   routes
 });
-
+// router.beforeEach((to, from, next) => {
+//   if (localStorage.getItem("loginStatus")) {
+//     console.log(this.$store.state.loginStatus);
+//     this.$store.state.loginStatus = localStorage.getItem("loginStatus");
+//     next();
+//   } else {
+//     next(); // 确保一定要有next()被调用
+//   }
+// });
 export default router;

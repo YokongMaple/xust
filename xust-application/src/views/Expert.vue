@@ -8,15 +8,13 @@
       <left-side title="专家智库"></left-side>
 
       <el-row class="teacher">
-        <router-link to="/expert/detail" v-for="o in 9" :key="o" class="pic">
+        <router-link to="/expert/detail" v-for="item in teacher" :key="item.id" class="pic">
+          <span>{{item.image}}</span>
+
           <el-card :body-style="{ padding: '0px' }">
-            <img
-              style="height:188px;width:100%"
-              src="../assets/images/teacher/chenweibo.jpg"
-              class="image"
-            />
+            <img style="height:188px;width:100%" :src="item.image" class="image" />
             <div style="padding: 14px;">
-              <span>陈伟博老师</span>
+              <span>{{item.name}}</span>
             </div>
           </el-card>
         </router-link>
@@ -40,10 +38,21 @@ export default {
   },
   data() {
     return {
-      fits: ["fill", "contain", "cover", "none", "scale-down"],
-      url:
-        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+      teacher: []
     };
+  },
+  methods: {
+    async fetchTeacher() {
+      const res = await this.$http.get(
+        "http://49.232.138.118:8080/yunzhi/admin/display_teachers"
+      );
+      this.teacher = res.data.data;
+      console.log(res.data.data);
+      console.log(this.teacher);
+    }
+  },
+  created() {
+    this.fetchTeacher();
   }
 };
 </script>

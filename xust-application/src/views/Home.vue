@@ -90,10 +90,14 @@ export default {
   },
   methods: {
     fn() {
-      alert(123);
+      // console.log("home");
+      // console.log(this.$store.state.loginMessage);
+      // localStorage.getItem("loginStatus");
     }
+  },
+  mounted() {
+    this.fn();
   }
-  // mounted:{}
 };
 </script>
 

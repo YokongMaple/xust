@@ -13,11 +13,14 @@ import "swiper/dist/css/swiper.css";
 
 // 导入axios配置文件
 import http from "./http";
+
+import store from './store'
 Vue.prototype.$http = http;
 
 Vue.use(VueAwesomeSwiper /* { default global options } */);
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");

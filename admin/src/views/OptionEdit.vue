@@ -1,41 +1,48 @@
 <template>
   <div class="about">
-    <h2>{{ id ? "编辑" : "新建" }}意见 {{ id }}</h2>
-    <el-form label-width="120px" @submit.native.prevent="save">
-      <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
-      </el-form-item>
-      <el-form-item label="描述">
-        <vue-editor v-model="model.body"></vue-editor>
-      </el-form-item>
+    <h2>查看意见 {{ id }}</h2>
 
-      <el-form-item>
-        <el-button type="primary" native-type="submit">保存</el-button>
-      </el-form-item>
-    </el-form>
+    <el-card style="margin-left:100px;margin-top:50px;width:600px" class="box-card">
+      <div slot="header" class="clearfix">
+        <el-tag style="margin:10px 0;">意见名称：</el-tag>
+        <div>{{model.name}}</div>
+      </div>
+      <div class="text item">
+        <el-tag type="warning" style="margin:10px 0;">意见内容</el-tag>
+        <div>{{model.content }}</div>
+      </div>
+    </el-card>
+    <el-button
+      style="margin:50px 0 0 100px;"
+      type="primary"
+      @click="$router.push('/option/list')"
+    >返回列表</el-button>
   </div>
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 export default {
   props: {
     // 从路由那里接收到的
     id: {}
   },
-  components: {
-    VueEditor
-  },
+  components: {},
   data() {
     return {
-      model: {},
-      parents: [] //父级状态
+      model: {}
     };
   },
   methods: {
-    async save() {}
+    // 获取所编辑分类信息的方法
+    async fetch() {
+      const res = await this.$http.get(`/query_advice?adviceId=${this.id}`);
+      this.model = res.data.data;
+      console.log(res);
+    }
   },
-  created() {}
+  created() {
+    this.fetch();
+  }
 };
 </script>
 <style scoped></style>

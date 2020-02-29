@@ -47,17 +47,30 @@ export default {
     async save() {
       let res;
       if (this.id) {
-        res = await this.$http.put(`/teacher/${this.id}`, this.model);
+        // 编辑
+        res = await this.$http.post(`/edit_teacher?id=${this.id}`, this.model);
+        this.$message({
+          type: "success",
+          message: "编辑成功"
+        });
         //  await this.$http.put(`rest/items/${this.id}`, this.model);
       } else {
+        // 注册
         res = await this.$http.post(`/teacher`, this.model);
-        console.log(res);
+        this.$message({
+          type: "success",
+          message: "注册成功"
+        });
+        // console.log(res);
       }
       // const res = await this.$http.post(`/teacher`, this.model);
-      this.$message({
-        type: "success",
-        message: "注册成功"
-      });
+    },
+    // 获取所编辑分类信息的方法
+    async fetch() {
+      const res = await this.$http.get(`/query_teacher?id=${this.id}`);
+      this.model = res.data.data;
+
+      console.log(res.data.data);
     },
     afterUpload(res) {
       console.log(res);
@@ -65,7 +78,9 @@ export default {
       console.log(this.model.image);
     }
   },
-  created() {}
+  created() {
+    this.id && this.fetch();
+  }
 };
 </script>
 <style scoped>

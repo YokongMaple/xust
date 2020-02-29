@@ -6,7 +6,7 @@
     <img src="../../assets/images/index2.jpg" style="width:100%" alt />
     <div class="policy-content">
       <left-side title="政策"></left-side>
-      <message title="政策1" content="12sdadas3123123"></message>
+      <message :title="content.introduction" :content="content.content"></message>
     </div>
   </div>
 </template>
@@ -28,10 +28,21 @@ export default {
   },
   data() {
     return {
-      fits: ["fill", "contain", "cover", "none", "scale-down"],
-      url:
-        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+      content: {}
     };
+  },
+  methods: {
+    async fetchPolicy() {
+      const res = await this.$http.get(
+        `http://49.232.138.118:8080/yunzhi/admin/query_policy?policyId=${this.$route.params.id}`
+      );
+      // console.log(res.data.data);
+      this.content = res.data.data;
+      console.log(this.content);
+    }
+  },
+  created() {
+    this.fetchPolicy();
   }
 };
 </script>

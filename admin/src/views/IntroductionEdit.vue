@@ -1,13 +1,9 @@
 <template>
   <div class="about">
-    <h2>{{ id ? "编辑" : "新建" }}简介 {{ id }}</h2>
+    <h2>简介编辑</h2>
     <el-form label-width="120px" @submit.native.prevent="save">
-      <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
-      </el-form-item>
-
-      <el-form-item label="描述">
-        <vue-editor v-model="model.body"></vue-editor>
+      <el-form-item label="内容">
+        <vue-editor v-model="model.content"></vue-editor>
       </el-form-item>
 
       <el-form-item>
@@ -29,14 +25,30 @@ export default {
   },
   data() {
     return {
-      model: {},
-      parents: [] //父级状态
+      model: {}
     };
   },
   methods: {
-    async save() {}
+    async save() {
+      const res = await this.$http.post(`/edit_introduction`, this.model);
+      // console.log("注册", res);
+      this.$message({
+        type: "success",
+        message: "保存成功"
+      });
+      // this.fetch();
+    },
+
+    // 查询简介
+    async fetch() {
+      const res = await this.$http.get(`/query_introduction`);
+      this.model = res.data.data;
+      // console.log(res.data.data);
+    }
   },
-  created() {}
+  created() {
+    this.fetch();
+  }
 };
 </script>
 <style >

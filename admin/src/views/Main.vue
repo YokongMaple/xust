@@ -29,11 +29,10 @@
           <el-menu-item-group>
             <template slot="title">简介管理</template>
             <el-menu-item index="/introduction/create">简介编辑</el-menu-item>
-            <el-menu-item index="/introduction/list">简介列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">意见管理</template>
-            <el-menu-item index="/option/create">意见编辑</el-menu-item>
+            <!-- <el-menu-item index="/option/create">查看意见</el-menu-item> -->
             <el-menu-item index="/option/list">意见列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
