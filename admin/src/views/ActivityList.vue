@@ -7,7 +7,6 @@
       <el-table-column prop="id" label="ID"></el-table-column>
 
       <el-table-column prop="introduction" label="活动名称"></el-table-column>
-      <el-table-column prop="end" label="开始时间"></el-table-column>
 
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">

@@ -6,7 +6,7 @@
     <img src="../../assets/images/index2.jpg" style="width:100%" alt />
     <div class="expert-content">
       <left-side title="专家智库"></left-side>
-      <message title="A老师" content="123123123"></message>
+      <message :title="content.name" :content="content.content"></message>
     </div>
   </div>
 </template>
@@ -28,10 +28,22 @@ export default {
   },
   data() {
     return {
-      fits: ["fill", "contain", "cover", "none", "scale-down"],
-      url:
-        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+      content: {}
     };
+  },
+  methods: {
+    async fetchTeacher() {
+      const res = await this.$http.get(
+        `/tourist/query_teacher?id=${this.$route.params.id}`
+      );
+      // console.log(res.data.data);
+      console.log(res.data.data);
+      this.content = res.data.data;
+      console.log(this.content);
+    }
+  },
+  created() {
+    this.fetchTeacher();
   }
 };
 </script>

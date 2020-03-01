@@ -14,6 +14,7 @@ import ExpertDetail from "../views/details/ExpertDetail.vue";
 import CaseDetail from "../views/details/CaseDetail.vue";
 import PolicyDetail from "../views/details/PolicyDetail.vue";
 import SubjectDetail from "../views/details/SubjectDetail.vue";
+import ActivityDetail from "../views/details/ActivityDetail.vue";
 import Question from "../views/Question.vue";
 Vue.use(VueRouter);
 
@@ -37,13 +38,17 @@ const routes = [
     name: "expert-detail",
     component: ExpertDetail
   },
-  { path: "/case/detail", name: "case-detail", component: CaseDetail },
+  { path: "/case/detail/:id", name: "case-detail", component: CaseDetail },
   {
     path: "/policy/detail/:id",
     name: "policy-detail",
     component: PolicyDetail
   },
-
+  {
+    path: "/activity/detail/:id",
+    name: "activity-detail",
+    component: ActivityDetail
+  },
   { path: "/subject/detail", name: "subject-detail", component: SubjectDetail },
   { path: "/question", name: "question", component: Question }
 ];

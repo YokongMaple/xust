@@ -34,9 +34,10 @@ export default {
   methods: {
     async fetchPolicy() {
       const res = await this.$http.get(
-        `http://49.232.138.118:8080/yunzhi/admin/query_policy?policyId=${this.$route.params.id}`
+        `/tourist/query_policy?policyId=${this.$route.params.id}`
       );
       // console.log(res.data.data);
+      console.log(res.data.data);
       this.content = res.data.data;
       console.log(this.content);
     }

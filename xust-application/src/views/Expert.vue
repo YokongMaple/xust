@@ -7,17 +7,30 @@
     <div class="expert-content">
       <left-side title="专家智库"></left-side>
 
-      <el-row class="teacher">
-        <router-link to="/expert/detail" v-for="item in teacher" :key="item.id" class="pic">
-          <span>{{item.image}}</span>
+      <el-row class="container">
+        <div class="teacher">
+          <router-link
+            :to="{ name: 'expert-detail', params: {id: item.id }}"
+            v-for="item in teacher"
+            :key="item.id"
+            class="pic"
+          >
+            <!-- <span>{{item.image}}</span> -->
+            <el-card :body-style="{ padding: '0px' }">
+              <img style="height:188px;width:100%" :src="item.image" class="image" />
+              <div style="padding: 14px;">
+                <span>{{item.name}}</span>
+              </div>
+            </el-card>
+          </router-link>
+        </div>
 
-          <el-card :body-style="{ padding: '0px' }">
-            <img style="height:188px;width:100%" :src="item.image" class="image" />
-            <div style="padding: 14px;">
-              <span>{{item.name}}</span>
-            </div>
-          </el-card>
-        </router-link>
+        <el-pagination
+          layout="prev, pager, next"
+          :total="total"
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+        ></el-pagination>
       </el-row>
     </div>
   </div>
@@ -38,17 +51,35 @@ export default {
   },
   data() {
     return {
-      teacher: []
+      teacher: [],
+      // 总条目数
+      total: 0,
+      // 当前页面
+      currentPage: 1,
+      // 一页显示几条
+      pageSize: 0
     };
   },
   methods: {
     async fetchTeacher() {
+      const res = await this.$http.get("/tourist/display_teachers");
+      this.teacher = res.data.data.list;
+
+      // console.log(this.teacher);
+      // 总条目数
+      this.total = res.data.data.total;
+      // console.log("总条目数", this.total);
+      // 一页显示几条
+      this.pageSize = res.data.data.pageSize;
+      // console.log(this.pageSize);
+    },
+    async handleCurrentChange(val) {
+      this.currentPage = val;
+      console.log(this.currentPage);
       const res = await this.$http.get(
-        "http://49.232.138.118:8080/yunzhi/admin/display_teachers"
+        `tourist/display_teachers?pageNum=${val}`
       );
-      this.teacher = res.data.data;
-      console.log(res.data.data);
-      console.log(this.teacher);
+      this.teacher = res.data.data.list;
     }
   },
   created() {
@@ -101,5 +132,11 @@ body {
 
 .clearfix:after {
   clear: both;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

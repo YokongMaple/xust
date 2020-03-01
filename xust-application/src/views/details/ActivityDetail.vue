@@ -5,7 +5,7 @@
     <my-nav></my-nav>
     <img src="../../assets/images/index2.jpg" style="width:100%" alt />
     <div class="case-content">
-      <left-side title="学生案例222"></left-side>
+      <left-side title="线下活动"></left-side>
       <message :title="content.introduction" :content="content.content"></message>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
   methods: {
     async fetchCase() {
       const res = await this.$http.get(
-        `/tourist/query_example?exampleId=${this.$route.params.id}`
+        `/tourist/query_event?eventId=${this.$route.params.id}`
       );
       console.log(this.$route.params.id, "1231232");
       // console.log(res.data.data);

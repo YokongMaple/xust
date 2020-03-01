@@ -7,14 +7,17 @@
     <div class="case-content">
       <left-side title="学生案例"></left-side>
       <div class="content">
-        <div style="height:4px;background:grey"></div>
-        <router-link tag="div" to="/case/detail" class="list-item" v-for="i in 6" :key="i">
-          <div>
-            <i class="el-icon-arrow-right"></i>
-            <span class="title">寻找灵魂深处的自己---同学</span>
-          </div>
-          <span class="date">2019/11/11</span>
-        </router-link>
+        <el-table :data="caseArray" style="width: 100%" @row-click="goDetails">
+          <el-table-column prop="introduction" label="案例名称" width="480"></el-table-column>
+
+          <el-table-column prop="time" label="日期" width="180"></el-table-column>
+        </el-table>
+        <el-pagination
+          layout="prev, pager, next"
+          :total="total"
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+        ></el-pagination>
       </div>
     </div>
   </div>
@@ -34,7 +37,38 @@ export default {
     LeftSide: SideBar
   },
   data() {
-    return {};
+    return {
+      caseArray: [],
+      total: 0,
+      currentPage: 1,
+      pageSize: 0
+    };
+  },
+  methods: {
+    async fetchCase() {
+      const res = await this.$http.get(
+        `/tourist/display_examples?pageNum=${this.currentPage}`
+      );
+      console.log(res.data.data);
+      this.caseArray = res.data.data.list;
+      this.total = res.data.data.total;
+      this.pageSize = res.data.data.pageSize;
+    },
+    async handleCurrentChange(val) {
+      this.currentPage = val;
+      console.log(this.currentPage);
+      const res = await this.$http.get(
+        `tourist/display_examples?pageNum=${val}`
+      );
+      this.caseArray = res.data.data.list;
+    },
+    goDetails(row) {
+      console.log(row.id);
+      this.$router.push({ name: "case-detail", params: { id: row.id } });
+    }
+  },
+  created() {
+    this.fetchCase();
   }
 };
 </script>
@@ -49,6 +83,7 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  /* align-items: center */
 }
 .content {
   /* background-color: red; */
@@ -56,15 +91,9 @@ body {
   padding: 0 50px 50px 50px;
   /* border-top: 2px solid grey; */
   margin-top: 50px;
-}
-.list-item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  /* background-color: yellow; */
-  padding: 20px 0;
-}
-.list-item:hover {
-  background-color: rgb(231, 225, 225);
 }
 </style>
