@@ -8,10 +8,6 @@ Vue.config.productionTip = false;
 import http from "./http";
 Vue.prototype.$http = http;
 
-// 时间格式化插件
-import moment from "moment";
-Vue.prototype.$moment = moment;
-
 new Vue({
   router,
   render: h => h(App)

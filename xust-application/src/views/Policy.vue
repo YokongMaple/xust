@@ -7,20 +7,6 @@
     <div class="policy-content">
       <left-side title="政策流程"></left-side>
       <div class="list">
-        <!-- <div v-for="item in policy" :key="item.id">
-          <router-link tag="div" :to="{name:'policy-detail',params:{id:item.id}}">
-            <el-divider></el-divider>
-            <div class="list-item">
-              <div class="list-img">
-                <img src="../assets/images/badge.png" alt />
-              </div>
-              <div class="list-content">
-                <div class="title">{{item.introduction}}</div>
-                <div class="content">{{item.content}}</div>
-              </div>
-            </div>
-          </router-link>
-        </div>-->
         <el-table :data="policy" style="width: 100%" @row-click="goDetails">
           <el-table-column prop="introduction" label="政策名称" width="480"></el-table-column>
 
@@ -118,34 +104,11 @@ body {
   justify-content: flex-start;
 }
 .list {
-  /* background-color: red; */
   flex: 1;
-  /* height: 1800px; */
   padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.list-item {
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  /* border: 2px solid yellow; */
-  margin: 20px 0;
-}
-.list-content {
-  padding-left: 25px;
-  display: flex;
-  flex-direction: column;
-}
-.list-content .title {
-  font-weight: bold;
-  font-size: 1.2em;
-  padding-bottom: 10px;
-}
-.list-img img {
-  width: 100px;
-  height: 100px;
 }
 </style>
