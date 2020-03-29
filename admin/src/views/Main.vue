@@ -50,15 +50,13 @@
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <el-dropdown>
+        <el-dropdown @command="handleCommand">
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item command="exit">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
+        <span>欢迎{{ $store.state.isLogin }}</span>
       </el-header>
 
       <el-main>
@@ -98,6 +96,12 @@ export default {
     return {
       tableData: Array(20).fill(item)
     };
+  },
+  methods: {
+    handleCommand(command) {
+      localStorage.removeItem("isLogin");
+      this.$router.push("/login");
+    }
   }
 };
 </script>

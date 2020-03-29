@@ -25,9 +25,15 @@ import IntroductionEdit from "../views/IntroductionEdit.vue";
 
 import AdminList from "../views/AdminList.vue";
 
+import Login from "../views/Login.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/login",
+    component: Login
+  },
   {
     path: "/",
     name: "main",
@@ -70,6 +76,21 @@ const routes = [
 
 const router = new VueRouter({
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  // if(to.path='login')
+  console.log(to.path === "/login");
+  if (to.path === "/login") {
+    next();
+    return;
+  }
+  if (localStorage.isLogin) {
+    next();
+  } else {
+    next("/login");
+    // next("/login");
+  }
 });
 
 export default router;
