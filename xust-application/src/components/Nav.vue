@@ -12,13 +12,10 @@
           <router-link to="/expert">专家智库</router-link>
         </li>
         <li>
-          <router-link to="/policy">政策流程</router-link>
+          <router-link to="/question">咨询服务</router-link>
         </li>
         <li>
           <router-link to="/case">学生案例</router-link>
-        </li>
-        <li>
-          <router-link to="/subject">专题讨论</router-link>
         </li>
         <li>
           <router-link to="/activity">线下活动</router-link>

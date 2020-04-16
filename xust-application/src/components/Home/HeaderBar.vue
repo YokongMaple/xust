@@ -23,9 +23,6 @@
         <router-link to="/cirno">个人中心</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/cirno">专题讨论</router-link>
-      </li>
-      <li class="nav-item">
         <router-link to="/cirno">线下活动</router-link>
       </li>
       <li class="nav-item">
@@ -40,7 +37,7 @@
 export default {};
 </script>
 
-<style  scoped>
+<style scoped>
 .tabbar {
   background-color: #000;
   z-index: -2;

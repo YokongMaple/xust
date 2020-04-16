@@ -15,15 +15,13 @@ import ActivityList from "../views/ActivityList";
 import OptionEdit from "../views/OptionEdit";
 import OptionList from "../views/OptionList";
 
-// import SubjectEdit from "../views/SubjectEdit";
-// import SubjectList from "../views/SubjectList";
-
 import ExpertEdit from "../views/ExpertEdit.vue";
 import ExpertList from "../views/ExpertList.vue";
 
 import IntroductionEdit from "../views/IntroductionEdit.vue";
 
-import AdminList from "../views/AdminList.vue";
+import AccountList from "../views/AccountList.vue";
+import AccountEdit from "../views/AccountEdit.vue";
 
 import Login from "../views/Login.vue";
 
@@ -32,7 +30,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/login",
-    component: Login
+    component: Login,
   },
   {
     path: "/",
@@ -69,13 +67,15 @@ const routes = [
       //   props: true
       // },
 
-      { path: "/admin/list", component: AdminList }
-    ]
-  }
+      { path: "/accounts/list", component: AccountList },
+      { path: "/accounts/create", component: AccountEdit },
+      { path: "/accounts/create/:uuid", component: AccountEdit, props: true },
+    ],
+  },
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
 });
 
 router.beforeEach((to, from, next) => {

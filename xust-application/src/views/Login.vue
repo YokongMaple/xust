@@ -33,7 +33,7 @@
 export default {
   data() {
     return {
-      form: {}
+      form: {},
     };
   },
   methods: {
@@ -43,18 +43,20 @@ export default {
       if (res.data.status == 1) {
         this.$message({
           type: "success",
-          message: "登陆成功"
+          message: "登陆成功",
         });
-        console.log(res.data.data.account);
+        console.log(res.data.data);
         const isLogin = res.data.data.account;
+        const uuid = res.data.data.uuid;
         this.$store.state.isLogin = isLogin;
         localStorage.setItem("isLogin", isLogin);
+        localStorage.setItem("uuid", uuid);
         this.$router.push("/home");
       } else {
         this.$message.error("登录失败，请检查账户或密码是否输入正确");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

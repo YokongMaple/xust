@@ -25,6 +25,7 @@
         <router-link to="/register">注册</router-link>
       </div>
       <div v-else>
+        <el-button type="text" @click="personDetail">个人中心</el-button>
         <el-link @click="signOUt">注销</el-link>
       </div>
     </div>
@@ -35,7 +36,7 @@
 export default {
   data() {
     return {
-      status: this.$store.state.isLogin
+      status: this.$store.state.isLogin,
     };
   },
   methods: {
@@ -43,12 +44,16 @@ export default {
       localStorage.removeItem("isLogin");
       // this.$store.state.loginStatus = {};
       this.$router.go(0);
-    }
+    },
+    personDetail() {
+      let uuid = localStorage.uuid;
+      this.$router.push(`/person-detail/${uuid}`);
+    },
   },
   mounted() {
     // this.$router.go(0);
     console.log(this.status.data);
-  }
+  },
 };
 </script>
 

@@ -6,7 +6,10 @@
     <img src="../../assets/images/index2.jpg" style="width:100%" alt />
     <div class="policy-content">
       <left-side title="政策"></left-side>
-      <message :title="content.introduction" :content="content.content"></message>
+      <message
+        :title="content.introduction"
+        :content="content.content"
+      ></message>
     </div>
   </div>
 </template>
@@ -24,11 +27,11 @@ export default {
     Banner,
     MyNav: Nav,
     LeftSide: SideBar,
-    Message
+    Message,
   },
   data() {
     return {
-      content: {}
+      content: {},
     };
   },
   methods: {
@@ -40,11 +43,11 @@ export default {
       console.log(res.data.data);
       this.content = res.data.data;
       console.log(this.content);
-    }
+    },
   },
   created() {
     this.fetchPolicy();
-  }
+  },
 };
 </script>
 

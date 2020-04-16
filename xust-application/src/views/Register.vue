@@ -18,15 +18,14 @@
         </el-form-item>
 
         <el-form-item label="账户">
-          <el-input placeholder="请输入学号或工号" v-model="form.account"></el-input>
+          <el-input
+            placeholder="请输入学号或工号"
+            v-model="form.account"
+          ></el-input>
         </el-form-item>
 
         <el-form-item label="姓名">
           <el-input placeholder="请输入姓名" v-model="form.realName"></el-input>
-        </el-form-item>
-
-        <el-form-item v-if="form.status === 0" label="昵称">
-          <el-input placeholder="请输入昵称" v-model="form.nickName"></el-input>
         </el-form-item>
 
         <el-form-item label="密码">
@@ -39,7 +38,9 @@
 
         <el-form-item label="邮箱">
           <el-input placeholder="请输入邮箱" v-model="form.email"></el-input>
-          <el-button @click="sendEmail" style="margin-top:10px">发送验证码</el-button>
+          <el-button @click="sendEmail" style="margin-top:10px"
+            >发送验证码</el-button
+          >
         </el-form-item>
 
         <el-form-item label="验证码">
@@ -69,12 +70,16 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="warning" size="medium" @click="onSubmit">注册</el-button>
+          <el-button type="warning" size="medium" @click="onSubmit"
+            >注册</el-button
+          >
         </el-form-item>
       </el-form>
 
       <router-link to="/login">
-        <el-link type="primary" style="margin-left: 80px;">点击此处登录</el-link>
+        <el-link type="primary" style="margin-left: 80px;"
+          >点击此处登录</el-link
+        >
       </router-link>
     </div>
   </div>
@@ -108,25 +113,25 @@ export default {
       identity: [
         {
           value: 0,
-          label: "学生"
+          label: "学生",
         },
         {
           value: 1,
-          label: "教师"
-        }
+          label: "教师",
+        },
       ],
 
       major: [
         {
           value: "chinese",
-          label: "语文"
+          label: "语文",
         },
         {
           value: "art",
-          label: "艺术"
-        }
+          label: "艺术",
+        },
       ],
-      value: ""
+      value: "",
     };
   },
   methods: {
@@ -144,7 +149,7 @@ export default {
         } else {
           this.$message({
             type: "success",
-            message: "注册成功"
+            message: "注册成功",
           });
           this.$router.push("/login");
         }
@@ -162,7 +167,7 @@ export default {
       if (this.email.status === 1) {
         this.$message({
           type: "success",
-          message: "邮件发送成功，请查收"
+          message: "邮件发送成功，请查收",
         });
       }
       // console.log(this.email);
@@ -175,20 +180,19 @@ export default {
     },
     // 获取专业列表
     async fetchAcadamy(id) {
-      // http://49.232.138.118:8080/yunzhi/user/getMajor?acadamyId=1
       const res = await this.$http.get(`/user/getMajor?acadamyId=${id}`);
       this.acadamyList = res.data;
-    }
+    },
   },
   watch: {
     collegeName: function(newVal) {
       this.fetchAcadamy(newVal);
       // console.log(newVal);
-    }
+    },
   },
   created() {
     this.fetchCollage();
-  }
+  },
 };
 </script>
 
