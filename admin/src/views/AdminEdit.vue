@@ -1,42 +1,40 @@
 <template>
   <div class="about">
-    <h2>{{ id ? "xxx" : "新建" }}账号 {{ id }}</h2>
-    <el-form label-width="120px" @submit.native.prevent="save">
-      <el-row>
-        <el-col :span="12">
-          <el-form-item label="账号">
-            <el-input v-model="model.introduction"></el-input>
+    <h2>管理员详情</h2>
+    <el-row class="detial" style="width:60%">
+      <el-col :span="8">
+        <div class="block">
+          <el-image
+            style="width: 200px; height: 300px"
+            :fit="fit"
+            :src="model.avatarUrl"
+          ></el-image>
+        </div>
+      </el-col>
+      <el-col :span="5">
+        <el-form>
+          <el-form-item size="medium" label="学号">
+            <span>{{ model.account }}</span>
           </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="密码">
-            <el-input v-model="model.content"></el-input>
+          <el-form-item size="medium" label="姓名">
+            <span>{{ model.realName }}</span>
           </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-form-item label="身份">
-            <el-input v-model="model.content"></el-input> </el-form-item
-        ></el-col>
-        <el-col :span="12">
-          <el-form-item label="激活状况">
-            <el-switch
-              style="display: block,margin-top:1em"
-              v-model="active"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="已激活"
-              inactive-text="未激活"
-            >
-            </el-switch> </el-form-item
-        ></el-col>
-      </el-row>
-
-      <el-form-item>
-        <el-button type="primary" native-type="submit">保存</el-button>
-      </el-form-item>
-    </el-form>
+          <el-form-item size="medium" label="学院">
+            <span>{{ model.collegeName }}</span>
+          </el-form-item>
+          <el-form-item size="medium" label="专业">
+            <span>{{ model.majorName }}</span>
+          </el-form-item>
+          <el-form-item size="medium" label="身份">
+            <span>{{ model.status == 0 ? "学生" : "教师" }}</span>
+          </el-form-item>
+          <el-form-item size="medium" label="邮箱">
+            <span>{{ model.email }}</span>
+          </el-form-item>
+        </el-form>
+        <el-button @click="$router.push('/accounts/list')">返回</el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -45,7 +43,7 @@
 export default {
   props: {
     // 从路由那里接收到的
-    id: {},
+    uuid: {},
   },
   components: {
     // VueEditor,
@@ -54,39 +52,29 @@ export default {
     return {
       model: {},
       active: false,
+      fit: "fill",
     };
   },
   methods: {
-    async save() {
-      let res;
-      if (this.id) {
-        res = await this.$http.post(`/edit_example?id=${this.id}`, this.model);
-
-        this.$message({
-          type: "success",
-          message: "编辑成功",
-        });
-      } else {
-        // 注册
-        res = await this.$http.post(`/example`, this.model);
-        // console.log("注册", res);
-        this.$message({
-          type: "success",
-          message: "保存成功",
-        });
-      }
-    },
-    // 获取所编辑分类信息的方法
     async fetch() {
-      const res = await this.$http.get(`/query_example?exampleId=${this.id}`);
-      // console.log(res);
+      //49.232.138.118:8080/yunzhi/admin/detail_user?uuid=5
+      const res = await this.$http.get(
+        `http://49.232.138.118:8080/yunzhi/admin/detail_user?uuid=${this.uuid}`
+      );
+
       this.model = res.data.data;
-      // console.log(res.data.data);
+      console.log(this.model);
     },
   },
   created() {
-    this.id && this.fetch();
+    this.fetch();
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.detial {
+  margin-top: 50px;
+  box-shadow: 0 0 5px black;
+  padding: 50px;
+}
+</style>

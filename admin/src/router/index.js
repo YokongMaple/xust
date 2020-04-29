@@ -23,6 +23,9 @@ import IntroductionEdit from "../views/IntroductionEdit.vue";
 import AccountList from "../views/AccountList.vue";
 import AccountEdit from "../views/AccountEdit.vue";
 
+import AdminList from "../views/AdminList.vue";
+import AdminEdit from "../views/AdminEdit.vue";
+
 import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
@@ -59,17 +62,13 @@ const routes = [
 
       { path: "/Introduction/create", component: IntroductionEdit },
 
-      // { path: "/introduction/create", component: IntroductionEdit },
-      // { path: "/introduction/list", component: IntroductionList },
-      // {
-      //   path: "/introduction/edit/:id",
-      //   component: IntroductionEdit,
-      //   props: true
-      // },
-
       { path: "/accounts/list", component: AccountList },
       { path: "/accounts/create", component: AccountEdit },
       { path: "/accounts/create/:uuid", component: AccountEdit, props: true },
+
+      { path: "/admins/list", component: AdminList },
+      { path: "/admins/create", component: AdminEdit },
+      { path: "/admins/create/:uuid", component: AdminEdit, props: true },
     ],
   },
 ];

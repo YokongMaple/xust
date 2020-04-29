@@ -45,7 +45,7 @@ export default {
           type: "success",
           message: "登陆成功",
         });
-        console.log(res.data.data);
+        console.log(res.data);
         const isLogin = res.data.data.account;
         const uuid = res.data.data.uuid;
         this.$store.state.isLogin = isLogin;

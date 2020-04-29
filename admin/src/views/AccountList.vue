@@ -204,7 +204,8 @@ export default {
         "http://49.232.138.118:8080/yunzhi/admin/activate_users",
         arr
       );
-      console.log(res);
+      this.$message.success("批量激活成功");
+      this.search();
     },
     // 批量删除
     async batchDelete() {
@@ -214,11 +215,12 @@ export default {
         "http://49.232.138.118:8080/yunzhi/admin/delete_users",
         arr
       );
+      this.$message.success("批量删除成功");
+      this.search();
       console.log(res);
     },
   },
   created() {
-    // this.fetchExample();
     this.fetchCollage();
   },
 };

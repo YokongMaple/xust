@@ -10,16 +10,20 @@
       <el-row class="container">
         <div class="teacher">
           <router-link
-            :to="{ name: 'expert-detail', params: {id: item.id }}"
+            :to="{ name: 'expert-detail', params: { id: item.id } }"
             v-for="item in teacher"
             :key="item.id"
             class="pic"
           >
             <!-- <span>{{item.image}}</span> -->
             <el-card :body-style="{ padding: '0px' }">
-              <img style="height:188px;width:100%" :src="item.image" class="image" />
+              <img
+                style="height:188px;width:100%"
+                :src="item.image"
+                class="image"
+              />
               <div style="padding: 14px;">
-                <span>{{item.name}}</span>
+                <span>{{ item.name }}</span>
               </div>
             </el-card>
           </router-link>
@@ -47,7 +51,7 @@ export default {
     Top,
     Banner,
     MyNav: Nav,
-    LeftSide: SideBar
+    LeftSide: SideBar,
   },
   data() {
     return {
@@ -57,7 +61,7 @@ export default {
       // 当前页面
       currentPage: 1,
       // 一页显示几条
-      pageSize: 0
+      pageSize: 0,
     };
   },
   methods: {
@@ -80,11 +84,11 @@ export default {
         `tourist/display_teachers?pageNum=${val}`
       );
       this.teacher = res.data.data.list;
-    }
+    },
   },
   created() {
     this.fetchTeacher();
-  }
+  },
 };
 </script>
 
@@ -102,7 +106,7 @@ body {
 .teacher {
   flex: 1;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 40px;
 }

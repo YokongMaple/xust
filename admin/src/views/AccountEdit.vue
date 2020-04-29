@@ -32,6 +32,7 @@
             <span>{{ model.email }}</span>
           </el-form-item>
         </el-form>
+        <el-button @click="$router.push('/accounts/list')">返回</el-button>
       </el-col>
     </el-row>
   </div>

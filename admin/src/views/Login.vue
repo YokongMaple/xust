@@ -27,22 +27,34 @@
 export default {
   data() {
     return {
-      form: {}
+      form: {
+        account: "",
+        password: "",
+      },
     };
   },
   //   http://49.232.138.118:8080/yunzhi/user/login
   methods: {
     async save() {
       const res = await this.$http.post(
-        `http://49.232.138.118:8080/yunzhi/user/login`,
-        this.form
+        `http://server.versewow.cn/yunzhi/user/login`,
+        this.form,
+        {
+          withCredentials: false,
+        }
       );
       if (res.data.status == 1) {
         this.$message({
           type: "success",
-          message: "登陆成功"
+          message: "登陆成功",
         });
-        console.log(res.data.data.account);
+        // console.log(res);
+        const res2 = await this.$http.get(
+          `http://server.versewow.cn/yunzhi/user/testCookie`
+        );
+        console.log(res2.data);
+        const cookie = await this.$cookie.get("JSESSIONID");
+
         const isLogin = res.data.data.account;
         this.$store.state.isLogin = isLogin;
         localStorage.setItem("isLogin", isLogin);
@@ -50,8 +62,8 @@ export default {
       } else {
         this.$message.error("登录失败，请检查账户或密码是否输入正确");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
