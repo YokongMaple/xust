@@ -6,9 +6,9 @@
     <my-nav></my-nav>
     <!-- 轮播图 -->
     <div class="swiper">
-      <el-carousel height="380px">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3 class="small">{{ item }}</h3>
+      <el-carousel type="card" height="380px">
+        <el-carousel-item v-for="item in imgArr" :key="item.title">
+          <img :src="item.url" class="carousel_image_type" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -47,7 +47,7 @@
                 >更多</el-button
               >
             </div>
-            <div class="text item" style="overflow:hidden">
+            <div class="text item msg">
               基于当前网络信息技术发展、人际交往空间变化，当代大学生从入校到毕业，在校期间面临的学校认同、专业认知、角色定位，学业规划、课程选择、学习方法、学习目标，人际交往、父母沟通、异性相处、师生关系处理，四六级等考证，参加科技竞赛、社团、文体活动、社会实践、创新创业比赛等，培养兴趣、涵养性格、自我完善、发挥特长，择业就业、考研，考公务员职业确定等各种各样问题...
             </div>
           </el-card>
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="hot">
+    <!-- <div class="hot">
       <div class="hot-title">
         <a>最热专题讨论</a>
         <span class="more">更多</span>
@@ -68,7 +68,7 @@
           <div class="text item">33333</div>
         </el-card>
       </div>
-    </div>
+    </div> -->
     <foot></foot>
   </div>
 </template>
@@ -81,23 +81,41 @@ import Nav from "../components/Nav";
 import Foot from "../components/Home/Foot";
 export default {
   name: "headerbar",
+  data() {
+    return {
+      imgArr: [
+        {
+          url: require("../assets/images/bgc6.jpg"),
+          title: "1",
+        },
+        {
+          url: require("../assets/images/bg-login.jpg"),
+          title: 2,
+        },
+        {
+          url: require("../assets/images/bg_login2.jpg"),
+          title: 3,
+        },
+      ],
+    };
+  },
   components: {
     // HeaderBar,
     Top,
     Banner,
     MyNav: Nav,
-    Foot
+    Foot,
   },
   methods: {
     fn() {
       // console.log("home");
       // console.log(this.$store.state.loginMessage);
       // localStorage.getItem("loginStatus");
-    }
+    },
   },
   mounted() {
     this.fn();
-  }
+  },
 };
 </script>
 
@@ -146,6 +164,13 @@ a {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
+}
+.msg {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
 }
 .notice-intro {
   width: 300px;
@@ -211,7 +236,12 @@ a {
   line-height: 150px;
   margin: 0;
 }
-
+.carousel_image_type {
+  width: 100%;
+  height: 100%;
+  background-position: 100% 100%;
+  background-size: cover;
+}
 .el-carousel__item:nth-child(2n) {
   background-color: #99a9bf;
 }

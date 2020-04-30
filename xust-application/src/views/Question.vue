@@ -9,7 +9,11 @@
       <div class="ask">
         <el-button @click="ask">提问</el-button>
         <el-button @click="myQuestion">我的问题</el-button>
+        <el-button @click="teacherQuestion">老师问题</el-button>
         <el-button @click="answer">回复</el-button>
+        <el-button @click="studentWatch">学生查看</el-button>
+        <el-button @click="teacherWatch">教师查看</el-button>
+
         <router-view></router-view>
         <!-- <h2>提问</h2>
         <el-form label-width="120px" @submit.native.prevent="save">
@@ -104,8 +108,17 @@ export default {
     myQuestion() {
       this.$router.push("/question/list");
     },
+    teacherQuestion() {
+      this.$router.push("/question/teacher-list");
+    },
     answer() {
       this.$router.push("/answer");
+    },
+    studentWatch() {
+      this.$router.push("/student_watch");
+    },
+    teacherWatch() {
+      this.$router.push("/teacher_watch");
     },
   },
   created() {

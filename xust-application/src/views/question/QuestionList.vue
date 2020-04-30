@@ -6,7 +6,8 @@
       <!-- items._id -->
       <el-table-column prop="id" label="ID"></el-table-column>
 
-      <el-table-column prop="introduction" label="提问名称"></el-table-column>
+      <el-table-column prop="content" label="提问内容"></el-table-column>
+      <el-table-column prop="time" label="提问时间"></el-table-column>
 
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
@@ -14,9 +15,10 @@
           <el-button
             type="text"
             size="small"
-            @click="$router.push(`/case/edit/${scope.row.id}`)"
-            >编辑</el-button
+            @click="$router.push(`/student_watch/${scope.row.id}`)"
           >
+            查看
+          </el-button>
           <el-button type="text" size="small" @click="remove(scope.row)"
             >删除</el-button
           >
@@ -34,10 +36,17 @@ export default {
     };
   },
   methods: {
-    async fetchExample() {
-      const res = await this.$http.get(`/display_examples`);
-      // console.log(res.data.data);
+    // async fetchExample() {
+    //   const res = await this.$http.get(`/display_examples`);
+    //   // console.log(res.data.data);
+    //   this.items = res.data.data;
+    // },
+    async fetchData() {
+      const res = await this.$http.get(
+        `http://server.versewow.cn/yunzhi/user/student_question?uuid=${localStorage.uuid}`
+      );
       this.items = res.data.data;
+      // console.log("我的提问", res);
     },
     async remove(row) {
       console.log(row.id);
@@ -56,7 +65,8 @@ export default {
     },
   },
   created() {
-    this.fetchExample();
+    // this.fetchExample();
+    this.fetchData();
   },
 };
 </script>

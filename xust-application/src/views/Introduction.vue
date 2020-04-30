@@ -20,11 +20,11 @@ export default {
   components: {
     Top,
     Banner,
-    MyNav: Nav
+    MyNav: Nav,
   },
   data() {
     return {
-      content: ""
+      content: "",
     };
   },
   methods: {
@@ -32,11 +32,11 @@ export default {
       const res = await this.$http.get("/tourist/query_introduction");
       console.log(res.data);
       this.content = res.data.data.content;
-    }
+    },
   },
   created() {
     this.fetchContent();
-  }
+  },
 };
 </script>
 

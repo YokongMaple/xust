@@ -17,8 +17,13 @@ import QuestionDetail from "../views/details/QuestionDetail.vue";
 import ActivityDetail from "../views/details/ActivityDetail.vue";
 import QuestionEdit from "../views/question/QuestionEdit.vue";
 import QuestionList from "../views/question/QuestionList.vue";
+import QuestionListTeacher from "../views/question/QuestionListTeacher.vue";
 import Answer from "../views/question/Answer.vue";
+import StudentWatch from "../views/question/StudentWatch.vue";
+import TeacherWatch from "../views/question/TeacherWatch.vue";
+
 import PersonDetail from "../views/details/PersonDetail.vue";
+
 // import Question from "../views/Question.vue";
 Vue.use(VueRouter);
 
@@ -38,7 +43,10 @@ const routes = [
     children: [
       { path: "/question/create", component: QuestionEdit },
       { path: "/question/list", component: QuestionList },
+      { path: "/question/teacher-list", component: QuestionListTeacher },
       { path: "/answer", component: Answer },
+      { path: "/student_watch/:id", component: StudentWatch, props: true },
+      { path: "/teacher_watch/:id", component: TeacherWatch, props: true },
     ],
   },
   { path: "/case", name: "case", component: Case },

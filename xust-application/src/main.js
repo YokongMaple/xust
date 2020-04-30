@@ -7,14 +7,18 @@ import { VueEditor } from "vue2-editor";
 import "./style.css";
 Vue.config.productionTip = false;
 import VueAwesomeSwiper from "vue-awesome-swiper";
-
+import moment from "moment";
+Vue.prototype.$moment = moment;
+Vue.filter("formatDate", function(value) {
+  return moment(value).format("YYYY-MM-DD");
+});
 // require styles
 import "swiper/dist/css/swiper.css";
 
 // 导入axios配置文件
 import http from "./http";
 
-import store from './store'
+import store from "./store";
 Vue.prototype.$http = http;
 
 Vue.use(VueAwesomeSwiper /* { default global options } */);
@@ -22,5 +26,5 @@ Vue.use(VueAwesomeSwiper /* { default global options } */);
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

@@ -3,12 +3,12 @@
     <h2>提问</h2>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="选择提问人">
-        <el-select v-model="value1" multiple placeholder="请选择">
+        <el-select v-model="model.answerIDS" multiple placeholder="请选择">
           <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in teacherArr"
+            :key="item.uuid"
+            :label="item.realName"
+            :value="item.uuid"
           >
           </el-option>
         </el-select>
@@ -40,36 +40,42 @@
 export default {
   data() {
     return {
-      model: {},
+      model: {
+        answerIDS: [],
+      },
       id: "",
       avatar: "",
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
-      ],
-      value1: [],
+      teacherArr: [],
+
+      chooseTeacher: [],
     };
   },
   methods: {
-    save() {},
+    async save() {
+      this.model.time = this.$moment(new Date()).format("YYYY-MM-DD");
+      const res = await this.$http.post(
+        `http://server.versewow.cn/yunzhi/user/question`,
+        this.model
+      );
+      console.log(res.data);
+      if (res.data.status == 1) {
+        this.$message.success("提交成功");
+      }
+    },
+    async fetchTeacher() {
+      const res = await this.$http.get(
+        `http://server.versewow.cn/yunzhi/user/getTeachers?majorID=${localStorage.major}`
+        // {
+        //   // 单独配置
+        //   withCredentials: true,
+        // }
+      );
+      this.teacherArr = res.data.data;
+    },
+  },
+  created() {
+    this.model.uuid = Number(localStorage.uuid);
+    this.fetchTeacher();
   },
 };
 </script>
