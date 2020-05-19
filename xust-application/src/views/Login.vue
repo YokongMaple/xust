@@ -12,7 +12,7 @@
         <input
           class="password"
           v-model="form.password"
-          type="text"
+          type="password"
           placeholder="密码"
         />
       </div>
@@ -51,18 +51,21 @@ export default {
           type: "success",
           message: "登陆成功",
         });
-        console.log(res.data);
+        console.log("登陆成功的响应！", res.data.token);
         const isLogin = res.data.data.account;
         const uuid = res.data.data.uuid;
         const status = res.data.data.status;
         const major = res.data.data.major;
         const realName = res.data.data.realName;
+        const token = res.data.token;
+        console.log(token);
         this.$store.state.isLogin = isLogin;
         localStorage.setItem("isLogin", isLogin);
         localStorage.setItem("uuid", uuid);
         localStorage.setItem("status", status);
         localStorage.setItem("major", major);
         localStorage.setItem("realName", realName);
+        localStorage.setItem("token", token);
 
         this.$router.push("/home");
       } else {

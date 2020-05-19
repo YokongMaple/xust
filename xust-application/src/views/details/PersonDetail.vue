@@ -53,7 +53,7 @@
             <el-form-item label="头像">
               <el-upload
                 class="avatar-uploader"
-                :action="'http://49.232.138.118:8080/yunzhi/user/upload_image'"
+                :action="'http://server.versewow.cn/yunzhi/user/upload_image'"
                 :show-file-list="false"
                 :before-upload="beforeAvatarUpload"
                 :on-success="afterUpload"
@@ -122,7 +122,9 @@ export default {
   },
   data() {
     return {
-      model: {},
+      model: {
+        avatarUrl: "",
+      },
       active: false,
       fit: "fill",
       // 控制用户修改对话框的现实与隐藏
@@ -135,22 +137,23 @@ export default {
     async saveAvatar() {
       let uuid = this.$route.params.uuid;
       const res = await this.$http.get(
-        `http://49.232.138.118:8080/yunzhi/user/keep?uuid=${uuid}&avatarUrl=${this.model.avatarUrl}`
+        `http://server.versewow.cn/yunzhi/user/keep?uuid=${uuid}&avatarUrl=${this.model.avatarUrl}`
       );
+      console.log("头像", res);
       this.$message.success("保存头像成功");
     },
     async fetch() {
       //49.232.138.118:8080/yunzhi/admin/detail_user?uuid=5
       let uuid = this.$route.params.uuid;
       const res = await this.$http.get(
-        `http://49.232.138.118:8080/yunzhi/user/center?uuid=${uuid}`
+        `http://server.versewow.cn/yunzhi/user/center?uuid=${uuid}`
       );
 
       this.model = res.data.data;
       console.log(this.model);
     },
     afterUpload(res) {
-      console.log(res);
+      console.log("res...............", res);
       this.$set(this.model, "avatarUrl", res.data);
       console.log(this.model.avatarUrl);
     },
@@ -181,7 +184,7 @@ export default {
       const uuid = this.$route.params.uuid;
       const data = { uuid: uuid, password: this.password };
       const res = await this.$http.post(
-        `http://49.232.138.118:8080/yunzhi/user/change_pw`,
+        `http://server.versewow.cn/yunzhi/user/change_pw`,
         data
       );
       this.$message.success("更新密码成功");

@@ -7,51 +7,16 @@
     <div class="policy-content">
       <left-side title="咨询服务"></left-side>
       <div class="ask">
-        <el-button @click="ask">提问</el-button>
-        <el-button @click="myQuestion">我的问题</el-button>
-        <el-button @click="teacherQuestion">老师问题</el-button>
-        <el-button @click="answer">回复</el-button>
-        <el-button @click="studentWatch">学生查看</el-button>
-        <el-button @click="teacherWatch">教师查看</el-button>
-
+        <el-button v-if="status == 0" @click="ask">提问</el-button>
+        <el-button v-if="status == 0" @click="myQuestion">我的问题</el-button>
+        <el-button v-if="status == 1" @click="teacherQuestion"
+          >老师问题</el-button
+        >
+        <!-- <el-button @click="answer">回复</el-button> -->
+        <!-- <el-button @click="studentWatch">学生查看</el-button>
+        <el-button @click="teacherWatch">教师查看</el-button> -->
         <router-view></router-view>
-        <!-- <h2>提问</h2>
-        <el-form label-width="120px" @submit.native.prevent="save">
-          <el-form-item label="问题名称">
-            <el-input v-model="model.introduction"></el-input>
-          </el-form-item>
-          <el-form-item label="问题内容">
-            <el-input type="textarea" v-model="model.content"></el-input>
-          </el-form-item>
-
-          <el-form-item>
-            <el-button type="primary" native-type="submit">提问</el-button>
-          </el-form-item>
-        </el-form>
-        <el-divider content-position="left">老师回复</el-divider>
-        <div>暂无</div> -->
       </div>
-      <!-- <div class="list">
-        <el-table :data="policy" style="width: 100%" @row-click="goDetails">
-          <el-table-column
-            prop="introduction"
-            label="政策名称"
-            width="480"
-          ></el-table-column>
-
-          <el-table-column
-            prop="time"
-            label="日期"
-            width="180"
-          ></el-table-column>
-        </el-table>
-        <el-pagination
-          layout="prev, pager, next"
-          :total="total"
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-        ></el-pagination>
-      </div> -->
     </div>
   </div>
 </template>
@@ -75,6 +40,7 @@ export default {
       pageSize: 0,
       model: {},
       id: {},
+      status: "",
     };
   },
   methods: {
@@ -123,6 +89,7 @@ export default {
   },
   created() {
     this.fetchPolicy();
+    this.status = localStorage.status;
   },
   components: {
     Top,

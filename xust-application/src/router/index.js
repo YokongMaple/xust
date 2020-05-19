@@ -82,13 +82,15 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
-// router.beforeEach((to, from, next) => {
-//   if (localStorage.getItem("loginStatus")) {
-//     console.log(this.$store.state.loginStatus);
-//     this.$store.state.loginStatus = localStorage.getItem("loginStatus");
-//     next();
-//   } else {
-//     next(); // 确保一定要有next()被调用
-//   }
-// });
+
+router.beforeEach((to, from, next) => {
+  if (to.path == "/question" && typeof localStorage.isLogin == "undefined") {
+    next("/login");
+    return Vue.prototype.$message({
+      type: "error",
+      message: "请先登录",
+    });
+  }
+  next();
+});
 export default router;

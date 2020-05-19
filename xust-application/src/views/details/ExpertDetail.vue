@@ -6,6 +6,7 @@
     <img src="../../assets/images/index2.jpg" style="width:100%" alt />
     <div class="expert-content">
       <left-side title="专家智库"></left-side>
+
       <message :title="content.name" :content="content.content"></message>
     </div>
   </div>
@@ -24,11 +25,11 @@ export default {
     Banner,
     MyNav: Nav,
     LeftSide: SideBar,
-    Message
+    Message,
   },
   data() {
     return {
-      content: {}
+      content: {},
     };
   },
   methods: {
@@ -40,11 +41,11 @@ export default {
       console.log(res.data.data);
       this.content = res.data.data;
       console.log(this.content);
-    }
+    },
   },
   created() {
     this.fetchTeacher();
-  }
+  },
 };
 </script>
 

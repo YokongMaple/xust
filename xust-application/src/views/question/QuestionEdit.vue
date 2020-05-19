@@ -15,14 +15,14 @@
       </el-form-item>
 
       <el-form-item label="问题内容">
-        <el-input type="textarea" v-model="model.content"></el-input>
+        <el-input type="textarea" :rows="6" v-model="model.content"></el-input>
       </el-form-item>
 
       <el-form-item>
         <el-button type="primary" native-type="submit">提问</el-button>
       </el-form-item>
     </el-form>
-    <el-divider content-position="left">老师回复</el-divider>
+    <!-- <el-divider content-position="left">老师回复</el-divider>
     <div v-for="(item, index) in 4" :key="index">
       <div class="teacher-info">
         <el-image style="width: 50px; height: 50px" :src="avatar"></el-image>
@@ -32,7 +32,7 @@
         1231231213
       </div>
       <el-divider></el-divider>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     async save() {
-      this.model.time = this.$moment(new Date()).format("YYYY-MM-DD");
+      this.model.time = this.$moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
       const res = await this.$http.post(
         `http://server.versewow.cn/yunzhi/user/question`,
         this.model
@@ -60,6 +60,7 @@ export default {
       console.log(res.data);
       if (res.data.status == 1) {
         this.$message.success("提交成功");
+        this.model = {};
       }
     },
     async fetchTeacher() {

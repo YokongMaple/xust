@@ -7,7 +7,11 @@
       <el-table-column prop="id" label="ID"></el-table-column>
 
       <el-table-column prop="content" label="提问内容"></el-table-column>
-      <el-table-column prop="time" label="提问时间"></el-table-column>
+      <el-table-column label="提问时间">
+        <template slot-scope="scope">
+          {{ timeChange(scope.row.time) }}
+        </template>
+      </el-table-column>
 
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
@@ -55,13 +59,18 @@ export default {
         cancelButtonText: "cancel",
         type: "warning",
       }).then(async () => {
-        const res = await this.$http.get(`/delete_example?exampleId=${row.id}`);
+        const res = await this.$http.get(
+          `http://server.versewow.cn/yunzhi/user/delete_example?exampleId=${row.id}`
+        );
         this.$message({
           type: "success",
           message: "删除成功",
         });
         this.fetchExample();
       });
+    },
+    timeChange(value) {
+      return this.$moment(value).format("YYYY-MM-DD HH:mm");
     },
   },
   created() {

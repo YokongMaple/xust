@@ -41,8 +41,9 @@ export default {
   },
   methods: {
     signOUt() {
+      localStorage.clear();
       localStorage.removeItem("isLogin");
-      // this.$store.state.loginStatus = {};
+      this.$router.push("/home");
       this.$router.go(0);
     },
     personDetail() {

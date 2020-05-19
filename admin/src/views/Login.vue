@@ -38,29 +38,30 @@ export default {
     async save() {
       const res = await this.$http.post(
         `http://server.versewow.cn/yunzhi/user/login`,
-        this.form,
-        {
-          withCredentials: false,
-        }
+        this.form
       );
-      if (res.data.status == 1) {
+      console.log(res);
+      if (res.data.status !== 1) {
+        this.$message({
+          type: "error",
+          message: "请检查用户名或密码是否正确",
+        });
+      } else if (res.data.data.status == 2) {
         this.$message({
           type: "success",
           message: "登陆成功",
         });
-        // console.log(res);
-        const res2 = await this.$http.get(
-          `http://server.versewow.cn/yunzhi/user/testCookie`
-        );
-        console.log(res2.data);
-        const cookie = await this.$cookie.get("JSESSIONID");
 
         const isLogin = res.data.data.account;
+        const token = res.data.token;
+        const status = res.data.status;
         this.$store.state.isLogin = isLogin;
         localStorage.setItem("isLogin", isLogin);
+        localStorage.setItem("token", token);
+        localStorage.setItem("status", status);
         this.$router.push("/");
       } else {
-        this.$message.error("登录失败，请检查账户或密码是否输入正确");
+        this.$message.error("登录失败，请输入管理员账户");
       }
     },
   },

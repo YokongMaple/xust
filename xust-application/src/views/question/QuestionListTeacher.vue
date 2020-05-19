@@ -7,7 +7,11 @@
       <el-table-column prop="id" label="ID"></el-table-column>
 
       <el-table-column prop="content" label="提问内容"></el-table-column>
-      <el-table-column prop="time" label="提问时间"></el-table-column>
+      <el-table-column label="提问时间">
+        <template slot-scope="scope">
+          {{ timeChange(scope.row.time) }}
+        </template>
+      </el-table-column>
 
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
@@ -62,6 +66,9 @@ export default {
         });
         this.fetchExample();
       });
+    },
+    timeChange(value) {
+      return this.$moment(value).format("YYYY-MM-DD HH:MM");
     },
   },
   created() {

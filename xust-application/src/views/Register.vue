@@ -27,7 +27,12 @@
 
       <input class="input" placeholder="请确认密码" v-model="repassword" />
 
-      <input class="input" placeholder="请输入邮箱" v-model="form.email" />
+      <input
+        class="input"
+        type="email"
+        placeholder="请输入邮箱"
+        v-model="form.email"
+      />
 
       <div>
         <input
@@ -37,8 +42,13 @@
           v-model="reemail"
         />
 
-        <el-button type="info" @click="sendEmail">
-          发送验证码
+        <el-button
+          type="info"
+          :disabled="countFlag"
+          id="email-btn"
+          @click="sendEmail"
+        >
+          {{ btnMsg == null ? countNum + "s后重发" : btnMsg }}
         </el-button>
       </div>
       <div class="options">
@@ -83,6 +93,13 @@
 export default {
   data() {
     return {
+      // 倒计时周期
+      countNum: 60,
+      // 用于倒计时标记，true-正在倒计时
+      countFlag: false,
+      // 定时器
+      intervalBtn: {},
+      btnMsg: "发送验证码",
       // 要提交的数据
       form: {
         // 存放身份 0 学生 1 教师
@@ -130,15 +147,54 @@ export default {
   },
   methods: {
     async onSubmit() {
-      // console.log("submit!");
-      if (
-        this.email.data === this.reemail &&
-        this.form.password === this.repassword
-      ) {
-        console.log(12312312);
+      let passWordObj = {
+        "0": "ABCW",
+        "1": "WJUFN",
+        "2": "ASDA",
+        "3": "MMJI",
+        "4": "OLJGB",
+        "5": "TYYBVBNJ",
+        "6": "EDGBAU",
+        "7": "QUSBA",
+        "8": "UYANNF",
+        "9": "UNNGG",
 
+        A: "WYBFA",
+        B: "POLMBV",
+        C: "UYBBN",
+        D: "UGBNJ",
+        E: "AUDNU",
+        F: "AUNBA",
+        G: "MNVCK",
+        H: "PLOUAN",
+        I: "ZCXZX",
+        J: "POLZA",
+        K: "MNVC",
+        L: "SHIRO",
+        M: "MVC",
+        N: "SPRING",
+        O: "OISNA",
+        P: "ASUNF",
+        Q: "LINH",
+        R: "YABBF",
+        S: "POISA",
+        T: "MNGS",
+        U: "KKKJH",
+        V: "GHJKHG",
+        W: "LKJJHG",
+        X: "IUTB",
+        Y: "AGSYHF",
+        Z: "TYSBA",
+      };
+      let arr = this.reemail.split("");
+      let str = "";
+      for (let i = 0; i < arr.length; i++) {
+        str += passWordObj[arr[i]];
+      }
+      // console.log(str)
+      if (this.email.data === str && this.form.password === this.repassword) {
         const res = await this.$http.post(`/user/register`, this.form);
-        console.log(res.data.status);
+
         if (res.data.status == 0) {
           this.$message.error("注册失败-账户或邮箱已被注册请重新输入");
         } else {
@@ -150,22 +206,47 @@ export default {
         }
       }
     },
-
+    countDown() {
+      // 设置btn倒计时时显示的信息
+      this.btnMsg = null;
+      // 更改btn状态
+      this.countFlag = !this.countFlag;
+      // 设置倒计时
+      this.intervalBtn = setInterval(() => {
+        if (this.countNum <= 0) {
+          // 重置btn提示信息
+          this.btnMsg = "点击发送验证码";
+          // 清除定时器
+          clearInterval(this.intervalBtn);
+          // 更改btn状态
+          this.countFlag = !this.countFlag;
+          // 重置倒计时状态
+          this.countNum = 5;
+        }
+        // 倒计时
+        this.countNum--;
+      }, 1000);
+    },
     // 发送验证码按钮方法
     sendEmail() {
       this.fetchEmail(this.form.email);
     },
     // 获取验证码
     async fetchEmail(email) {
+      let reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+      if (!reg.test(email)) {
+        return this.$message.error("请输入正确邮箱");
+      }
       const res = await this.$http.get(`/user/email?email=${email}`);
       this.email = res.data;
+      console.log(res.data);
       if (this.email.status === 1) {
         this.$message({
           type: "success",
           message: "邮件发送成功，请查收",
         });
+        this.countDown();
       }
-      // console.log(this.email);
     },
     // 获取学院列表
     async fetchCollage() {

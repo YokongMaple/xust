@@ -9,15 +9,15 @@
         <div class="option">
           <div @click="t1">
             <i class="el-icon-collection-tag"></i>
-            <span>预告</span>
+            <span style="margin-right:0.5em">预告</span>
           </div>
           <div @click="t2">
             <i class="el-icon-collection-tag"></i>
-            <span>进行中</span>
+            <span style="margin-right:0.5em">进行中</span>
           </div>
           <div @click="t3">
             <i class="el-icon-collection-tag"></i>
-            <span>已完成</span>
+            <span style="margin-right:0.5em">已完成</span>
           </div>
         </div>
       </left-side>
@@ -36,10 +36,18 @@
             </div>
           </div>
         </div>-->
-        <h4>{{typeName}}</h4>
+        <h4>{{ typeName }}</h4>
         <el-table :data="events" style="width: 100%" @row-click="goDetails">
-          <el-table-column prop="introduction" label="活动名称" width="480"></el-table-column>
-          <el-table-column prop="time" label="日期" width="180"></el-table-column>
+          <el-table-column
+            prop="introduction"
+            label="活动名称"
+            width="480"
+          ></el-table-column>
+          <el-table-column
+            prop="time"
+            label="日期"
+            width="180"
+          ></el-table-column>
         </el-table>
 
         <el-pagination
@@ -65,7 +73,7 @@ export default {
     Top,
     Banner,
     MyNav: Nav,
-    LeftSide: SideBar
+    LeftSide: SideBar,
   },
   data() {
     return {
@@ -77,7 +85,7 @@ export default {
       // 一页显示几条
       pageSize: 0,
       type: 1,
-      typeName: "预告活动"
+      typeName: "预告活动",
     };
   },
   methods: {
@@ -119,11 +127,11 @@ export default {
     },
     goDetails(row) {
       this.$router.push({ name: "activity-detail", params: { id: row.id } });
-    }
+    },
   },
   created() {
     this.fetchActivity();
-  }
+  },
 };
 </script>
 

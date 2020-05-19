@@ -24,3 +24,67 @@ li {
 img {
   vertical-align: top;
 }
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.el-avatar > img {
+  width: 100%;
+}
+.el-card {
+  overflow: unset;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  min-width: 15rem;
+  height: 15rem;
+  line-height: 15rem;
+  text-align: center;
+}
+.avatar {
+  min-width: 15rem;
+  height: 15rem;
+  display: block;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  min-width: 15rem;
+  height: 15rem;
+  line-height: 15rem;
+  text-align: center;
+}
+.avatar {
+  min-width: 15rem;
+  height: 15rem;
+  display: block;
+}
+el-avatar img {
+  width: 100%;
+}

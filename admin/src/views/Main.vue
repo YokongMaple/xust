@@ -35,14 +35,10 @@
             <!-- <el-menu-item index="/option/create">查看意见</el-menu-item> -->
             <el-menu-item index="/option/list">意见列表</el-menu-item>
           </el-menu-item-group>
-          <el-menu-item-group>
-            <template slot="title">论坛管理</template>
-            <el-menu-item index="1-1">论坛编辑</el-menu-item>
-            <el-menu-item index="1-2">论坛列表</el-menu-item>
-          </el-menu-item-group>
+
           <el-menu-item-group>
             <template slot="title">账户管理</template>
-            <el-menu-item index="/accounts/create">账号编辑</el-menu-item>
+            <!-- <el-menu-item index="/accounts/create">账号编辑</el-menu-item> -->
             <el-menu-item index="/accounts/list">账户列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
@@ -105,7 +101,7 @@ export default {
   },
   methods: {
     handleCommand(command) {
-      localStorage.removeItem("isLogin");
+      localStorage.clear();
       this.$router.push("/login");
     },
   },
