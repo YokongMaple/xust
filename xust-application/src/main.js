@@ -8,6 +8,7 @@ import "./style.css";
 Vue.config.productionTip = false;
 import VueAwesomeSwiper from "vue-awesome-swiper";
 import moment from "moment";
+// import VueEditor from "vue2-editor";
 Vue.prototype.$moment = moment;
 Vue.filter("formatDate", function(value) {
   return moment(value).format("YYYY-MM-DD");
@@ -22,6 +23,10 @@ import store from "./store";
 Vue.prototype.$http = http;
 
 Vue.use(VueAwesomeSwiper /* { default global options } */);
+import "./style.css";
+import Vue2Editor from "vue2-editor";
+
+Vue.use(Vue2Editor);
 
 new Vue({
   router,

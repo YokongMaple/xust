@@ -68,7 +68,7 @@ export default {
       });
     },
     timeChange(value) {
-      return this.$moment(value).format("YYYY-MM-DD HH:MM");
+      return this.$moment(value).format("YYYY-MM-DD HH:mm");
     },
   },
   created() {
